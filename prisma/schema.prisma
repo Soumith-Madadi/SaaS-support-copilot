@@ -1,0 +1,97 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id          String   @id @default(cuid())
+  name        String
+  slug        String   @unique
+  description String?
+  website     String?
+  logoUrl     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  users       User[]
+  companyData CompanyData?
+  chats       Chat[]
+
+  @@map("companies")
+}
+
+model User {
+  id        String    @id @default(cuid())
+  email     String    @unique
+  name      String?
+  password  String
+  role      UserRole  @default(CUSTOMER)
+  companyId String?
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
+
+  company Company? @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  chats   Chat[]
+
+  @@map("users")
+}
+
+model CompanyData {
+  id         String   @id @default(cuid())
+  companyId String   @unique
+  features   Json?    // Array of feature objects
+  pricing    Json?    // Pricing tiers and information
+  usage      Json?    // Usage documentation
+  commonIssues Json?  // Common issues and solutions
+  updatedAt  DateTime @updatedAt
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@map("company_data")
+}
+
+model Chat {
+  id        String   @id @default(cuid())
+  userId    String
+  companyId String
+  title     String?
+  summary   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  user    User      @relation(fields: [userId], references: [id], onDelete: Cascade)
+  company Company   @relation(fields: [companyId], references: [id], onDelete: Cascade)
+  messages Message[]
+
+  @@map("chats")
+}
+
+model Message {
+  id        String   @id @default(cuid())
+  chatId    String
+  role      MessageRole
+  content   String   @db.Text
+  createdAt DateTime @default(now())
+
+  chat Chat @relation(fields: [chatId], references: [id], onDelete: Cascade)
+
+  @@map("messages")
+}
+
+enum UserRole {
+  CUSTOMER
+  COMPANY_ADMIN
+  COMPANY_MEMBER
+}
+
+enum MessageRole {
+  user
+  assistant
+}
