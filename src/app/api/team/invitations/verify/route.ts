@@ -39,7 +39,7 @@ export async function GET(request: Request) {
     }
 
     // Check if already accepted
-    const existingMember = await db.teamMember.findFirst({
+    const existingMember = await db.user.findFirst({
       where: {
         email: invitation.email,
         companyId: invitation.companyId,

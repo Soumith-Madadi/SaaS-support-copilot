@@ -46,10 +46,13 @@ export default function TeamManagement({
     setLoading(true)
 
     try {
+      // Map UI roles to database roles
+      const dbRole = role === "ADMIN" ? "COMPANY_ADMIN" : "COMPANY_MEMBER"
+      
       const response = await fetch("/api/team/invite", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, role }),
+        body: JSON.stringify({ email, role: dbRole }),
       })
 
       const data = await response.json()

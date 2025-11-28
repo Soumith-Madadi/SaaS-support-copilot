@@ -23,6 +23,7 @@ model Company {
   users       User[]
   companyData CompanyData?
   chats       Chat[]
+  invitations Invitation[]
 
   @@map("companies")
 }
@@ -89,6 +90,20 @@ enum UserRole {
   CUSTOMER
   COMPANY_ADMIN
   COMPANY_MEMBER
+}
+
+model Invitation {
+  id        String   @id @default(cuid())
+  companyId String
+  email     String
+  token     String   @unique
+  role      UserRole
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+
+  company Company @relation(fields: [companyId], references: [id], onDelete: Cascade)
+
+  @@map("invitations")
 }
 
 enum MessageRole {

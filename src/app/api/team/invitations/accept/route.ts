@@ -33,7 +33,7 @@ export async function POST(request: Request) {
     }
 
     // Check if already accepted
-    const existingMember = await db.teamMember.findFirst({
+    const alreadyAccepted = await db.user.findFirst({
       where: {
         email: invitation.email,
         companyId: invitation.companyId,
@@ -41,7 +41,7 @@ export async function POST(request: Request) {
       },
     })
 
-    if (existingMember) {
+    if (alreadyAccepted) {
       return NextResponse.json(
         { error: "Invitation has already been accepted" },
         { status: 400 }
@@ -52,7 +52,7 @@ export async function POST(request: Request) {
     const hashedPassword = await bcrypt.hash(password, 10)
 
     // Check if team member already exists (without password)
-    const existingMember = await db.teamMember.findFirst({
+    const existingMember = await db.user.findFirst({
       where: {
         email: invitation.email,
         companyId: invitation.companyId,
@@ -61,23 +61,23 @@ export async function POST(request: Request) {
 
     if (existingMember) {
       // Update existing member
-      await db.teamMember.update({
+      await db.user.update({
         where: { id: existingMember.id },
         data: {
           name,
           password: hashedPassword,
+          role: invitation.role,
         },
       })
     } else {
       // Create new team member
-      await db.teamMember.create({
+      await db.user.create({
         data: {
           email: invitation.email,
           name,
           password: hashedPassword,
           companyId: invitation.companyId,
           role: invitation.role,
-          invitedBy: null,
         },
       })
     }

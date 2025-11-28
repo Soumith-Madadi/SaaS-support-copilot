@@ -30,7 +30,7 @@ export async function POST(request: Request) {
     }
 
     // Check if team member already exists
-    const existingMember = await db.teamMember.findFirst({
+    const existingMember = await db.user.findFirst({
       where: {
         email,
         companyId: user.companyId,
