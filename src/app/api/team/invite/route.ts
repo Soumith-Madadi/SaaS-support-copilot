@@ -19,6 +19,13 @@ export async function POST(request: Request) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
+    if (!user.companyId) {
+      return NextResponse.json(
+        { error: "Company ID not found" },
+        { status: 400 }
+      )
+    }
+
     const body = await request.json()
     const { email, role } = body
 

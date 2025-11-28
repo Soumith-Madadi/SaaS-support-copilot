@@ -18,6 +18,10 @@ export default async function CompanyDataPage() {
     redirect("/dashboard/chat")
   }
 
+  if (!user.companyId) {
+    redirect("/dashboard/chat")
+  }
+
   const companyData = await db.companyData.findUnique({
     where: { companyId: user.companyId },
   })

@@ -18,6 +18,10 @@ export default async function TeamManagementPage() {
     redirect("/dashboard/chat")
   }
 
+  if (!user.companyId) {
+    redirect("/dashboard/chat")
+  }
+
   const teamMembers = await db.user.findMany({
     where: {
       companyId: user.companyId,

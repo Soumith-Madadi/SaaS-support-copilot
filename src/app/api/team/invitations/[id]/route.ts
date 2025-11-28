@@ -21,6 +21,13 @@ export async function DELETE(
       return NextResponse.json({ error: "Forbidden" }, { status: 403 })
     }
 
+    if (!user.companyId) {
+      return NextResponse.json(
+        { error: "Company ID not found" },
+        { status: 400 }
+      )
+    }
+
     const { id } = await params
 
     // Verify invitation belongs to user's company
