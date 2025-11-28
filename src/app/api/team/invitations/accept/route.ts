@@ -32,12 +32,11 @@ export async function POST(request: Request) {
       )
     }
 
-    // Check if already accepted
+    // Check if already accepted (user exists with this email and company)
     const alreadyAccepted = await db.user.findFirst({
       where: {
         email: invitation.email,
         companyId: invitation.companyId,
-        password: { not: null },
       },
     })
 
