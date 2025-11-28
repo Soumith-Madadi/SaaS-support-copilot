@@ -20,13 +20,26 @@ export async function POST(
     const { chatId } = await params
 
     // Get chat - user can only summarize their own chats, or company admin/team member can summarize company chats
+    const whereClause: any = {
+      id: chatId,
+    }
+
+    if (user.role === "CUSTOMER") {
+      whereClause.userId = user.id
+    } else if (user.role === "COMPANY_ADMIN" || user.role === "COMPANY_MEMBER") {
+      if (!user.companyId) {
+        return NextResponse.json(
+          { error: "Company ID not found" },
+          { status: 400 }
+        )
+      }
+      whereClause.companyId = user.companyId
+    } else {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 })
+    }
+
     const chat = await db.chat.findFirst({
-      where: {
-        id: chatId,
-        ...(user.role === "USER"
-          ? { userId: user.id }
-          : { companyId: user.companyId }),
-      },
+      where: whereClause,
       include: {
         messages: {
           orderBy: { createdAt: "asc" },

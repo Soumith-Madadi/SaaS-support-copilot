@@ -18,7 +18,11 @@ export default async function CompanyChatDetailPage({ params }: PageProps) {
 
   const user = session.user as SessionUser
 
-  if (user.role !== "COMPANY_ADMIN" && user.role !== "TEAM_MEMBER") {
+  if (user.role !== "COMPANY_ADMIN" && user.role !== "COMPANY_MEMBER") {
+    redirect("/dashboard/chat")
+  }
+
+  if (!user.companyId) {
     redirect("/dashboard/chat")
   }
 
