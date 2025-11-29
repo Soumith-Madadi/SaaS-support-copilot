@@ -27,11 +27,20 @@ This project demonstrates a production-ready SaaS platform that solves real-worl
 
 ## Screenshots
 
-_Note: Add screenshots of your application here. Consider including:_
-- _Dashboard view showing the chat interface_
-- _Company admin panel with team management_
-- _Chat history and conversation view_
-- _Company data management interface_
+### User Dashboard
+![User Company_Search](https://github.com/user-attachments/assets/d735b90b-2ecc-4e33-b3cf-05d519b9f9d7)
+
+### User Chat Interface
+![Chat Interface](https://github.com/user-attachments/assets/a6891252-2f59-4b58-84bc-bab8753e9490)
+
+### User Chat History
+![Company Chat List](https://github.com/user-attachments/assets/f595ff9d-baa5-423c-ba32-fca2758061c6)
+
+### Company Dashboard
+![Chat Viewer](https://github.com/user-attachments/assets/7213db7b-0853-44e3-81f6-e6b22400f49a)
+
+### User Sign Up Page
+![Sign Up](https://github.com/user-attachments/assets/38af8709-423a-496a-b648-a945e0a10a71)
 
 ## My Role & Engineering Skills Demonstrated
 
