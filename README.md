@@ -86,9 +86,9 @@ This project demonstrates a production-ready SaaS platform that solves real-worl
 
 ## Contact Info
 
-**LinkedIn:** [Your LinkedIn Profile](https://linkedin.com/in/soumith-madadi-a8038b233/)  
+**LinkedIn:** [My LinkedIn Profile](https://linkedin.com/in/soumith-madadi-a8038b233/)  
 **Email:** madadi.soumith@gmail.com  
-**GitHub:** [Your GitHub Profile](https://github.com/Soumith-Madadi)  
+**GitHub:** [My GitHub Profile](https://github.com/Soumith-Madadi)  
 
 ---
 
