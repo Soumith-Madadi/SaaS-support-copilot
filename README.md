@@ -23,7 +23,15 @@ This project demonstrates a production-ready SaaS platform that solves real-worl
 3. **Full-Stack Excellence**: Demonstrates proficiency across the entire stack - from database design to API development to modern React UI
 4. **Production Ready**: Includes authentication, authorization, role-based access control, and secure password handling
 5. **Modern Tech Stack**: Built with cutting-edge technologies (Next.js 14, TypeScript, Prisma, PostgreSQL) following industry best practices
-6. **Real-World Features**: Chat history, AI-generated summaries, team management, and company data management - features that businesses actually need
+6. **Real-World Features**: Chat history and company data management - features that businesses actually need
+
+## Tech Stack
+
+- **Frontend/Backend**: Next.js 14+ (App Router) with TypeScript
+- **Database**: PostgreSQL with Prisma ORM
+- **Authentication**: NextAuth.js
+- **AI**: Google Gemini API (gemini-2.5-flash)
+- **Styling**: Tailwind CSS
 
 ## Screenshots
 
@@ -42,7 +50,7 @@ This project demonstrates a production-ready SaaS platform that solves real-worl
 ### User Sign Up Page
 ![Sign Up](https://github.com/user-attachments/assets/38af8709-423a-496a-b648-a945e0a10a71)
 
-## My Role & Engineering Skills Demonstrated
+## Engineering Skills Demonstrated
 
 ### Full-Stack Development
 - **Frontend**: Built responsive, modern UI using Next.js 14 App Router, React, TypeScript, and Tailwind CSS
@@ -78,10 +86,9 @@ This project demonstrates a production-ready SaaS platform that solves real-worl
 
 ## Contact Info
 
-**LinkedIn:** [Your LinkedIn Profile](https://linkedin.com/in/yourprofile)  
-**Email:** your.email@example.com  
-**GitHub:** [Your GitHub Profile](https://github.com/yourusername)  
-**Portfolio:** [Your Portfolio Website](https://yourportfolio.com)
+**LinkedIn:** [Your LinkedIn Profile](https://linkedin.com/in/soumith-madadi-a8038b233/)  
+**Email:** madadi.soumith@gmail.com  
+**GitHub:** [Your GitHub Profile](https://github.com/Soumith-Madadi)  
 
 ---
 
@@ -91,17 +98,8 @@ This project demonstrates a production-ready SaaS platform that solves real-worl
 - **AI Chatbot**: Google Gemini-powered chatbot with company-specific context
 - **User Chat History**: Users can view their own chat history
 - **Company Admin Dashboard**: Admins can view all company user chats
-- **Team Member Management**: Add team members to view company chats
 - **Chat Summaries**: AI-generated summaries for each conversation
 - **Company Data Management**: Manage features, pricing, usage docs, and common issues
-
-## Tech Stack
-
-- **Frontend/Backend**: Next.js 14+ (App Router) with TypeScript
-- **Database**: PostgreSQL with Prisma ORM
-- **Authentication**: NextAuth.js
-- **AI**: Google Gemini API (gemini-2.5-flash)
-- **Styling**: Tailwind CSS
 
 ## Project Structure
 
@@ -129,54 +127,16 @@ This project demonstrates a production-ready SaaS platform that solves real-worl
 │       └── index.ts           # TypeScript types
 ```
 
-## Usage
-
-### Creating an Account
-
-1. Navigate to `/register`
-2. Enter your company name, company slug, name, email, and password
-3. You'll be automatically set as the company admin
-
-### Managing Company Data
-
-1. As a company admin, go to `/company/settings`
-2. Click "Manage Data" to update:
-   - Features (JSON array)
-   - Pricing (JSON object)
-   - Usage documentation (JSON object)
-   - Common issues (JSON array)
-
-### Adding Team Members
-
-1. As a company admin, go to `/company/settings/team`
-2. Enter team member email, password, and select role (Support or Admin)
-3. Click "Add Member" to create the team member account
-4. Team members can now log in with their credentials
-
-### Using the Chat
-
-1. Users can start chatting at `/dashboard/chat`
-2. The AI will use company-specific context from the company data
-3. Chat summaries are automatically generated after 5+ messages
-4. View chat history at `/dashboard/history`
-
-### Viewing Company Chats
-
-1. Company admins and team members can view all company chats at `/company/chats`
-2. Click on any chat to view the full conversation
-
 ## API Routes
 
 - `POST /api/auth/register` - Register a new company and user
 - `POST /api/chat/message` - Send a message in a chat
-- `POST /api/chat/[chatId]/summary` - Generate chat summary
 - `PUT /api/company/data` - Update company data (admin only)
-- `POST /api/team/invite` - Add a team member (admin only)
 
 ## Database Schema
 
 - **Company**: Company information
-- **User**: Regular users (customers) and team members
+- **User**: Regular users (customers)
 - **CompanyData**: Company-specific data (features, pricing, etc.)
 - **Chat**: Chat conversations
 - **Message**: Individual messages in chats
