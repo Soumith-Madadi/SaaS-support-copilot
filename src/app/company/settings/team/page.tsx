@@ -30,23 +30,15 @@ export default async function TeamManagementPage() {
     orderBy: { createdAt: "desc" },
   })
 
-  const invitations = await db.invitation.findMany({
-    where: {
-      companyId: user.companyId,
-      expiresAt: { gt: new Date() },
-    },
-    orderBy: { createdAt: "desc" },
-  })
-
   return (
     <div className="px-4 sm:px-0">
       <div className="mb-6">
         <h1 className="text-3xl font-bold text-gray-900">Team Members</h1>
         <p className="mt-2 text-sm text-gray-600">
-          Invite and manage team members who can view company chats
+          Add and manage team members who can view company chats
         </p>
       </div>
-      <TeamManagement initialTeamMembers={teamMembers} initialInvitations={invitations} />
+      <TeamManagement initialTeamMembers={teamMembers} />
     </div>
   )
 }

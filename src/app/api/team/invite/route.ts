@@ -3,7 +3,7 @@ import { getServerSession } from "next-auth"
 import { authOptions } from "@/lib/auth"
 import { db } from "@/lib/db"
 import { SessionUser } from "@/types"
-import crypto from "crypto"
+import bcrypt from "bcryptjs"
 
 export async function POST(request: Request) {
   try {
@@ -27,11 +27,11 @@ export async function POST(request: Request) {
     }
 
     const body = await request.json()
-    const { email, role } = body
+    const { email, role, password } = body
 
-    if (!email || !role) {
+    if (!email || !role || !password) {
       return NextResponse.json(
-        { error: "Email and role are required" },
+        { error: "Email, role, and password are required" },
         { status: 400 }
       )
     }
@@ -51,39 +51,29 @@ export async function POST(request: Request) {
       )
     }
 
-    // Generate invitation token
-    const token = crypto.randomBytes(32).toString("hex")
-    const expiresAt = new Date()
-    expiresAt.setDate(expiresAt.getDate() + 7) // 7 days expiry
+    // Hash password
+    const hashedPassword = await bcrypt.hash(password, 10)
 
-    // Create invitation
-    const invitation = await db.invitation.create({
+    // Create user directly
+    const newMember = await db.user.create({
       data: {
-        companyId: user.companyId,
         email,
-        token,
+        password: hashedPassword,
         role,
-        expiresAt,
+        companyId: user.companyId,
       },
     })
-
-    // TODO: Send invitation email
-    // For now, we'll just return the invitation with the token
-    // In production, you'd send an email with a link like:
-    // `${process.env.NEXTAUTH_URL}/accept-invitation?token=${token}`
 
     return NextResponse.json({
-      invitation: {
-        id: invitation.id,
-        email: invitation.email,
-        role: invitation.role,
-        expiresAt: invitation.expiresAt,
-        createdAt: invitation.createdAt,
+      member: {
+        id: newMember.id,
+        email: newMember.email,
+        role: newMember.role,
+        createdAt: newMember.createdAt,
       },
-      token, // In production, don't return this - send via email instead
     })
   } catch (error) {
-    console.error("Invitation error:", error)
+    console.error("Add team member error:", error)
     return NextResponse.json(
       { error: "Internal server error" },
       { status: 500 }
