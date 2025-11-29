@@ -2,13 +2,17 @@
 
 A full-stack multi-tenant SaaS platform for AI-powered customer support. Each company can manage their own data, and users can interact with an AI chatbot that uses company-specific context to answer questions.
 
+## 🌐 Live Demo
+
+**Access the live application at:** [https://saas-support-copilot-gf1qy6sjk-soumithmadadi-6457s-projects.vercel.app](https://saas-support-copilot-gf1qy6sjk-soumithmadadi-6457s-projects.vercel.app)
+
 ## Features
 
 - **Multi-Company Support**: Each company has isolated data and users
 - **AI Chatbot**: Google Gemini-powered chatbot with company-specific context
 - **User Chat History**: Users can view their own chat history
 - **Company Admin Dashboard**: Admins can view all company user chats
-- **Team Member Management**: Invite team members to view company chats
+- **Team Member Management**: Add team members to view company chats
 - **Chat Summaries**: AI-generated summaries for each conversation
 - **Company Data Management**: Manage features, pricing, usage docs, and common issues
 
@@ -106,12 +110,12 @@ npm run dev
    - Usage documentation (JSON object)
    - Common issues (JSON array)
 
-### Inviting Team Members
+### Adding Team Members
 
 1. As a company admin, go to `/company/settings/team`
-2. Enter team member email and select role (Support or Admin)
-3. Click "Invite" - the invitation token will be returned (in production, this would be sent via email)
-4. Team members can accept invitations at `/accept-invitation?token=<token>`
+2. Enter team member email, password, and select role (Support or Admin)
+3. Click "Add Member" to create the team member account
+4. Team members can now log in with their credentials
 
 ### Using the Chat
 
@@ -131,19 +135,15 @@ npm run dev
 - `POST /api/chat/message` - Send a message in a chat
 - `POST /api/chat/[chatId]/summary` - Generate chat summary
 - `PUT /api/company/data` - Update company data (admin only)
-- `POST /api/team/invite` - Invite a team member (admin only)
-- `GET /api/team/invitations/verify` - Verify invitation token
-- `POST /api/team/invitations/accept` - Accept invitation
+- `POST /api/team/invite` - Add a team member (admin only)
 
 ## Database Schema
 
 - **Company**: Company information
-- **User**: Regular users (customers)
-- **TeamMember**: Support staff and admins
+- **User**: Regular users (customers) and team members
 - **CompanyData**: Company-specific data (features, pricing, etc.)
 - **Chat**: Chat conversations
 - **Message**: Individual messages in chats
-- **Invitation**: Team member invitations
 
 ## Security
 
