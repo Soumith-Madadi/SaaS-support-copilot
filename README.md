@@ -28,13 +28,13 @@ This project demonstrates a production-ready SaaS platform that solves real-worl
 ## Screenshots
 
 ### User Dashboard
-![User Company_Search](https://github.com/user-attachments/assets/d735b90b-2ecc-4e33-b3cf-05d519b9f9d7)
+![User Company_Search](https://github.com/user-attachments/assets/8d1a8c01-dc87-41ba-80bd-c067bb688ea2)
 
 ### User Chat Interface
-![Chat Interface](https://github.com/user-attachments/assets/a6891252-2f59-4b58-84bc-bab8753e9490)
+![Chat Interface](https://github.com/user-attachments/assets/6d5b78d0-1698-4a0f-b037-7dcb5ef457f2)
 
 ### User Chat History
-![Company Chat List](https://github.com/user-attachments/assets/f595ff9d-baa5-423c-ba32-fca2758061c6)
+![Company Chat List](https://github.com/user-attachments/assets/256631ba-5475-44d1-8bee-04982766361a)
 
 ### Company Dashboard
 ![Chat Viewer](https://github.com/user-attachments/assets/7213db7b-0853-44e3-81f6-e6b22400f49a)
