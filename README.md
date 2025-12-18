@@ -2,7 +2,7 @@
 
 A full-stack multi-tenant SaaS platform for AI-powered customer support. Each company can manage their own data, and users can interact with an AI chatbot that uses company-specific context to answer questions.
 
-## 🌐 Live Demo
+## Live Demo
 
 **Access the live application at:** [https://saas-support-copilot-gf1qy6sjk-soumithmadadi-6457s-projects.vercel.app](https://saas-support-copilot-gf1qy6sjk-soumithmadadi-6457s-projects.vercel.app)
 
