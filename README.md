@@ -1,4 +1,4 @@
-# AI Chat Support Multi-Company SaaS Platform
+# ResolveAI
 
 A full-stack multi-tenant SaaS platform for AI-powered customer support. Each company can manage their own data, and users can interact with an AI chatbot that uses company-specific context to answer questions.
 
